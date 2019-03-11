@@ -36,6 +36,20 @@ int EnQueue (SqQueue *Q,ElemType e)
     Q->rear = (Q->rear+1) % QUEUESIZE; //队尾后移一位
     return 1;
 }
+void input(SqQueue *Q,int n)
+{
+	ElemType data;
+	
+	for(int i=0;i<n;i++)
+	{
+		scanf("%d",&data);
+		if(!EnQueue(Q,data))
+		{
+			printf("入队失败！");
+		}
+	}
+}
+ 
 //若队列不空，则删除Q的队头元素，用e返回其值,并返回1；否则返回0
 int DeQueue (SqQueue *Q,ElemType *e) 
 {
@@ -43,6 +57,14 @@ int DeQueue (SqQueue *Q,ElemType *e)
     *e = Q->data[Q->front];
     Q->front = (Q->front+1) % QUEUESIZE; //队头后移一位
     return 1;
+}
+void output(SqQueue Q)
+{
+	ElemType data;
+	while(!DeQueue(&Q,&data))
+	{
+		printf("%d",data);
+	}
 }
 //若栈不空，则用e返回队头元素,并返回1；否则返回0
 int GetFront(SqQueue Q,ElemType *e)

@@ -43,6 +43,7 @@ void output(LNode *L)
     }
 }
 
+
 //初始化一个单链表，成功返回头指针，失败返回NULL
 LNode * LinkListInit()
 {
@@ -54,7 +55,7 @@ LNode * LinkListInit()
 }
 
 //在带头结点的单链表L中第i个位置之前插入元素e，成功返回1，失败返回0
-int LinkListInsert(LNode *L, int i, ElemType e)
+int LinkListInsert(LNode *L, int i,ElemType e)
 {
 	LNode  *p, *s;
 	int  j;
@@ -67,7 +68,7 @@ int LinkListInsert(LNode *L, int i, ElemType e)
 	return 1;
 }
 //在带头结点的单链表L中，删除第i个元素，并由e返回其值，成功返回1，失败返回0
-int LinkListDelete(LNode *L, int i, ElemType *e)
+int LinkListDelete(LNode *L, int i)
 {
 	LNode *p, *q;
 	int j;
@@ -77,8 +78,7 @@ int LinkListDelete(LNode *L, int i, ElemType *e)
 		p=p->next;++j;
 	}  
 	if(!(p->next)||j>i-1)  return 0;     //删除位置不合理
-	q=p->next; 
-	*e=q->data;                       //用e返回被删结点数据域的值
+	q=p->next;                      
 	p->next=q->next;free(q);   //删除并释放结点
 	return 1;
 }

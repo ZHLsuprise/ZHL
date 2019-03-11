@@ -20,6 +20,19 @@ int InitStack(SqStack *S)
 	S->stacksize=STACKSIZE;
 	return 1;
  }
+ /*调用：
+       SqStack s;
+       if(!InitStack(&s));
+       printf("分配失败！");*/
+void input(SqStack *S,int n)
+{
+	ElemType data;
+	for(int i=1;i<=n;i++)
+	{
+		scanf("%d",&data);
+		Push (S,data);
+	}
+}
 // 插入元素e为新的栈顶元素 ,如果成功，返回1，如果失败，返回0
 int Push (SqStack *S,ElemType e)
 { 
@@ -33,10 +46,18 @@ int Push (SqStack *S,ElemType e)
 	*S->top++=e; // 先插入元素，然后将栈顶指针上移一位
 	return 1;
 }
+void output(SqStack S) 
+{
+	ElemType data;
+	while(Pop(&S,&data))
+	printf("%d",data);
+}
+
 //若栈不空，则删除栈顶元素，用e返回其值，并返回1；否则返回0
 int Pop(SqStack *S,ElemType *e)
 { 
-	if(S->top==S->base)return 0;  //栈空		
+	if(S->top==S->base)
+	return 0;  //栈空		
 	*e=*--S->top;      // 先将栈顶指针下移一位，然后取出元素值赋值给e
 	return 1; 
  }
